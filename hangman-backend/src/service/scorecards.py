@@ -1,15 +1,10 @@
-from fastapi import APIRouter
-from model.scorecard import Scorecard
+from ..model.scorecard import Scorecard
 from ..mock import scorecards
 
-router = APIRouter(prefix="/scorecards")
 
-
-@router.get("")
 async def get_scorecards():
     return scorecards.get_scorecards()
 
-@router.post("")
 async def create_scorecard(scorecard: Scorecard):
     try:
         scorecards.create_scorecard(scorecard.playerName, scorecard.playerScore, scorecard.playerStatistics)

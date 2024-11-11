@@ -1,4 +1,4 @@
-from ..model.scorecard import Scorecard
+from model.scorecard import Scorecard
 
 scorecards = [
     Scorecard(
