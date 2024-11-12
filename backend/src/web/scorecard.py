@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from project.backend.src.model.scorecard import Scorecard
+from model.scorecard import Scorecard
 from ..mock import scorecards
 
 router = APIRouter(prefix="/scorecards")
