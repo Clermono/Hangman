@@ -1,5 +1,5 @@
 import sqlite3
-from model.scorecard import Scorecard
+from src.model.scorecard import Scorecard
 
 DB_NAME = "scorecards.db"
 conn = sqlite3.connect(DB_NAME)

@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            leaderboard: null 
+            leaderboard: null
         }
     },
 
@@ -26,6 +26,42 @@ export default {
         } catch (error) {
             console.error(error)
         }
+    },
+
+    computed: {
+        rankEmoji() {
+            return (rank) => {
+                if (rank === 1 || rank === 2 || rank === 3) {
+                    return {
+                        class: "emojiRank",
+                        text: rank === 1 ? "🥇" : rank === 2 ? "🥈" : "🥉"
+                    }
+                } else {
+                    return {
+                        class: "textRank",
+                        text: rank
+                    }
+                }
+            }
+        },
+
+        rankColor() {
+            return (rank) => {
+                if (rank === 1) {
+                    return "goldPlayer"
+                } else if (rank === 2) {
+                    return "silverPlayer"
+                } else if (rank === 3) {
+                    return "bronzePlayer"
+                } else {
+                    if (rank % 2 === 0) {
+                        return "evenPlayer"
+                    } else {
+                        return "oddPlayer"
+                    }
+                }
+            }
+        }
     }
 }
 </script>
@@ -34,7 +70,8 @@ export default {
     <div class="container">
         <h1>Leaderboard</h1>
 
-        <div class="player" v-for="(player, index) in leaderboard" :key="index">
+        <div :class="rankColor(index + 1)" class="player" v-for="(player, index) in leaderboard" :key="index">
+            <span :class="rankEmoji(index + 1).class">{{ rankEmoji(index + 1).text }}</span>
             <span class="playerName">{{ player.playerName }}</span>
             <span class="playerScore">{{ player.playerScore }}</span>
         </div>
@@ -58,14 +95,53 @@ h1 {
 .player {
     display: flex;
     border: 1px solid white;
+    position: relative;
     width: 600px;
     height: 60px;
+    color: #e0e0e0;
+}
+
+.textRank {
+    position: absolute;
+    left: 15px;
+    font-size: 25px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.emojiRank {
+    position: absolute;
+    left: 7px;
+    font-size: 25px;
+    margin-top: 10px;
+    text-align: center;
 }
 
 .playerName {
+    position: absolute;
+    left: 70px;
     font-size: 25px;
-    margin-left: 10px;
     margin-top: 10px;
+}
+
+.goldPlayer {
+    background-color: #d4af37;
+}
+
+.silverPlayer {
+    background-color: #b0b0b0;
+}
+
+.bronzePlayer {
+    background-color: #cd7f32;
+}
+
+.evenPlayer {
+    background-color: #484848;
+}
+
+.oddPlayer {
+    background-color: #333333;
 }
 
 .playerScore {

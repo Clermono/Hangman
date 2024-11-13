@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"cd.. && cd hangman-backend && python main.py\"",
+    "dev": "concurrently \"vite\" \"cd.. && cd backend && python main.py\"",
     "build": "vite build",
     "preview": "vite preview"
   },
