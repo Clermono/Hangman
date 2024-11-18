@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"vite\" \"cd .. && cd backend && python main.py\"",
-    "build": "concurrently \"vite build\" \"cd .. && cd backend && python main.py\"",
+    "dev": "concurrently \"vite\" \"cd .. && cd backend && python -m main.py\"",
+    "build": "concurrently \"vite build\" \"cd .. && cd backend && python -m main.py\"",
     "preview": "vite preview"
   },
   "dependencies": {
