@@ -1,0 +1,19 @@
+# Node.js and Vue.js files
+node_modules/
+dist/
+build/
+
+# Python files
+__pycache__/
+*.pyc
+
+# IDE and editor files
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Other files
+package-lock.json
