@@ -4,12 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "concurrently vite",
-    "build": "concurrently vite build",
+    "dev": "vite",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "concurrently": "^9.0.1",
     "sweetalert2": "^11.14.2",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"

@@ -16,7 +16,6 @@ origins = [
     "https://hangman-eight-pi.vercel.app/scorecards",
     "https://hangman-git-master-clermonos-projects.vercel.app",
     "https://hangman-git-master-clermonos-projects.vercel.app/scorecards"
-    "https://hangman-git-master-clermonos-projects.vercel.app/leaderboard"
 ]
 
 app.add_middleware(
