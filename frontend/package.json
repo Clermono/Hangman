@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"vite\" \"cd.. && cd backend && python main.py\"",
-    "build": "vite build",
+    "build": "concurrently \"vite build\" \"cd.. && cd backend && python main.py\"",
     "preview": "vite preview"
   },
   "dependencies": {

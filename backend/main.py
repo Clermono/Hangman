@@ -10,6 +10,12 @@ origins = [
     "http://localhost",
     "http://localhost:5173",
     "http://localhost:5173/scorecards",
+    "https://hangman-clermonos-projects.vercel.app",
+    "https://hangman-clermonos-projects.vercel.app/scorecards",
+    "https://hangman-eight-pi.vercel.app",
+    "https://hangman-eight-pi.vercel.app/scorecards",
+    "https://hangman-git-master-clermonos-projects.vercel.app",
+    "https://hangman-git-master-clermonos-projects.vercel.app/scorecards"
 ]
 
 app.add_middleware(
