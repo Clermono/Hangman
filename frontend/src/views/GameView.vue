@@ -95,7 +95,7 @@ export default {
                         confirmButtonText: "Save my score"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            const url = new URL("/scorecards", "http://localhost:8000")
+                            const url = new URL("/scorecards", "https://hangman-backend-alpha.vercel.app")
                             console.log(url)
                             
                             const postData = async () => {
