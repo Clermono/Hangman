@@ -7,7 +7,7 @@ export default {
     },
 
     async mounted() {
-        const URL = "http://localhost:8000/scorecards"
+        const URL = "https://hangman-backend-alpha.vercel.app/scorecards"
 
         try {
             const response = await fetch(URL, {

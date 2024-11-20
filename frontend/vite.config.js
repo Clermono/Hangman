@@ -18,7 +18,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/scorecards": {
-        target: "http://localhost:8000",
+        target: "https://hangman-backend-alpha.vercel.app",
         changeOrigin: true
       }
     }
