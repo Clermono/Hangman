@@ -1,16 +1,4 @@
-from .init import conn, curs
 from src.model.scorecard import Scorecard
-
-curs.execute(
-    """
-    CREATE TABLE IF NOT EXISTS scorecards (
-        playerId INTEGER PRIMARY KEY AUTOINCREMENT,
-        playerName TEXT NOT NULL,
-        playerScore INTEGER NOT NULL,
-        playerStatistics TEXT
-    )
-    """
-)
 
 scorecards = [
     Scorecard(
@@ -62,14 +50,32 @@ scorecards = [
         playerName="Emily Chen",
         playerScore=85,
         playerStatistics={
+            "word": "space",
+            "mistakes": 1,
+            "time": 70
+        }
+    ),
+    Scorecard(
+        playerName="David Lee",
+        playerScore=95,
+        playerStatistics={
+            "word": "steak",
+            "mistakes": 0,
+            "time": 60
+        }
+    ),
+    Scorecard(
+        playerName="Sophia Patel",
+        playerScore=75,
+        playerStatistics={
             "word": "spear",
             "mistakes": 5,
             "time": 110
         }
     ),
     Scorecard(
-        playerName="Sophia Patel",
-        playerScore=75,
+        playerName="Oliver Kim",
+        playerScore=65,
         playerStatistics={
             "word": "spite",
             "mistakes": 7,
@@ -77,58 +83,28 @@ scorecards = [
         }
     ),
     Scorecard(
-        playerName="Oliver Kim",
-        playerScore=65,
-        playerStatistics={
-            "word": "speed",
-            "mistakes": 3,
-            "time": 90
-        }
-    ),
-    Scorecard(
         playerName="Isabella Taylor",
         playerScore=80,
         playerStatistics={
-            "word": "stamp",
+            "word": "speed",
             "mistakes": 3,
             "time": 90
         }
     )
 ]
 
-for scorecard in scorecards:
-    curs.execute(
-        """
-            INSERT INTO scorecards VALUES (:playerName, :playerScore, :playerStatistics)
-        """,
-        scorecard.playerName, scorecard.playerScore, str(scorecard.playerStatistics)
-    )
 
-def row_to_scorecard(row: tuple) -> Scorecard:
-    playerName, playerScore, playerStatistics = row
+def get_scorecards():
+    scorecards.sort(key=lambda x: x.playerScore, reverse=True)
+    return scorecards
 
-    return Scorecard(
+def create_scorecard(playerName: str, playerScore: int, playerStatistics: dict):
+    scorecards.append(Scorecard(
         playerName = playerName,
         playerScore = playerScore,
         playerStatistics = playerStatistics
-    )
+    ))
 
-def scorecard_to_dict(scorecard: Scorecard) -> dict:
-    return scorecard.model_dump()
-
-def get_scorecards() -> list[Scorecard]:
-    curs.execute("SELECT * FROM scorecards")
-    rows = list(curs.fetchall())
-
-    return [row_to_scorecard(row) for row in rows]
-
-def create_scorecard(scorecard: Scorecard) -> None:
-    qry = """
-            INSERT INTO scorecards VALUES (:playerName, :playerScore, :playerStatistics)
-        """
-    params = scorecard_to_dict(scorecard)
-
-    curs.execute(qry, params)
-
-def delete_worst_scorecard() -> None:
-    curs.execute("DELETE FROM scorecards WHERE playerScore = (SELECT MIN(playerScore) FROM scorecards)")
+    if len(scorecards) > 10:
+        scorecards.sort(key=lambda x: x.playerScore, reverse=True)
+        scorecards.pop()
