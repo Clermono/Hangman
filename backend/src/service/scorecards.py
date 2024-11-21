@@ -1,5 +1,5 @@
 from src.model.scorecard import Scorecard
-from ..mock import scorecards
+from ..data import scorecards
 
 
 async def get_scorecards():
